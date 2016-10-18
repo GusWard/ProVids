@@ -39,9 +39,10 @@ if __name__ == "__main__":
     videofiles.extend(tools.getFileNamesRecursive(sourcePaths, "*.mov"))
     videofiles.extend(tools.getFileNamesRecursive(sourcePaths, "*.m4a"))
     videofiles.extend(tools.getFileNamesRecursive(sourcePaths, "*.mp4"))
+    videofiles.extend(tools.getFileNamesRecursive(sourcePaths, "*.avi"))
 
     print 'Found videos:'
-    print videofiles
+    print "\n".join(videofiles)
 
     for i in range (0, len(videofiles)):
     
@@ -54,10 +55,7 @@ if __name__ == "__main__":
         finalFilename = tools.getOriginalFilenameFromTemp(tempfilename)
         os.chmod(videofiles[i], stat.S_IRWXU)
 		
-        if tools.getExtension(videofiles[i]) != ".mp4":
-            needsConvert = True
-        else:
-            print 'Video already mp4.'
+        needsConvert = True
 
         if tools.getFileSize(videofiles[i]) > tools.gigabytes(2):
             needsCompress = True
@@ -65,7 +63,7 @@ if __name__ == "__main__":
             print 'Video too small to compress.'
 		
         if needsConvert:
-            print 'Attempting to convert to MP4...'
+            print 'Attempting to convert to MP4 using libx264, aac...'
             if convert.toMP4(videofiles[i]) == 0:
                 send2trash(videofiles[i])
                 tools.rename(tempfilename, finalFilename)

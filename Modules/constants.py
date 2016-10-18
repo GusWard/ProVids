@@ -18,10 +18,10 @@ CRF_PLACEHOLDER = '$CRF'
 
 # -loglevel quiet
 
-FFMPEG_CONVERT = ' -threads 0 -i ' + INPUT_PLACEHOLDER + ' -loglevel quiet -vcodec copy -acodec copy ' + OUTPUT_PLACEHOLDER
+FFMPEG_CONVERT = ' -threads 0 -i ' + INPUT_PLACEHOLDER + ' -loglevel quiet -vcodec libx264 -acodec aac -preset slower ' + OUTPUT_PLACEHOLDER
 
-FFMPEG_CRF = ' -threads 0 -i ' + INPUT_PLACEHOLDER + ' -loglevel quiet -vcodec libx264 -acodec copy -crf ' + CRF_PLACEHOLDER + ' ' + OUTPUT_PLACEHOLDER
+FFMPEG_CRF = ' -threads 0 -i ' + INPUT_PLACEHOLDER + ' -loglevel quiet -vcodec copy -acodec copy -preset slower -crf ' + CRF_PLACEHOLDER + ' ' + OUTPUT_PLACEHOLDER
 
-FFMPEG_OPT_STREAM = ' -threads 0 -i ' + INPUT_PLACEHOLDER + ' -loglevel quiet -movflags faststart ' + OUTPUT_PLACEHOLDER
+FFMPEG_OPT_STREAM = ' -threads 0 -i ' + INPUT_PLACEHOLDER + ' -loglevel quiet -movflags faststart -acodec copy -vcodec copy -preset slower ' + OUTPUT_PLACEHOLDER
 
-FFMPEG_OPT_CRF_AND_STREAM = ' -threads 0 -i ' + INPUT_PLACEHOLDER + ' -loglevel quiet -vcodec libx264 -acodec copy -movflags +faststart -crf ' + CRF_PLACEHOLDER + ' ' + OUTPUT_PLACEHOLDER
+FFMPEG_OPT_CRF_AND_STREAM = ' -threads 0 -i ' + INPUT_PLACEHOLDER + ' -loglevel quiet -vcodec copy -acodec copy -movflags +faststart -preset slower -crf ' + CRF_PLACEHOLDER + ' ' + OUTPUT_PLACEHOLDER
